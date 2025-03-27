@@ -51,3 +51,10 @@ teacher = Teacher(30,40,50,100)
 
 print(f"teach intelligence: {teacher.intelligence}")
 ```
+## python enum, similar to ts and java
+```
+class CALL_STATUS(Enum):
+    EXCEEDED_LIMIT = 1
+    UNAVAILABLE = 2
+
+```
