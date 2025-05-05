@@ -1,5 +1,52 @@
 # python
 
+# Using UV
+https://docs.astral.sh/uv/getting-started/features/
+
+Old way of creating virtual env and start the app
+```
+1006  mkdir old_way
+ 1007  cd old_way
+ 1008  ls
+//set up and active the virtual env
+ 1009  python3 -m venv .venv
+ 1010  source .venv/bin/activate
+ 1011  pip install fask requests
+ 1012  pip install flask requests
+ 1013  touch main.py
+ 1014  ls
+ 1015  ls -la
+//create a requirement file, similar to package.json
+ 1016  pip freeze > requirement.txt
+ 1017  ls
+ 1018  cat requirement.txt
+```
+
+New way of using UV
+
+```
+1019  cd ..
+ 1020  ls
+ 1021  uv init new_app
+ 1022  cd new_app
+ 1023  ls
+ 1024  ls
+ 1025  ls -la
+//UV automatically create git, main, readme, and pyproject.toml (similar to package.json), uv.lock (all dependencies tree)
+.		.git		.python-version	main.py		README.md
+..		.gitignore	.venv		pyproject.toml	uv.lock
+
+//install dependencies
+ 1033  uv add flask requests
+//show lib dependency tree
+ 1034  uv tree
+ 1035  deactivate
+//even if u deactivate, you can still run the main.py
+//even if u deleted .venv, becos of the uv.lock file, uv can install based on all the dependencies.
+//u do not have to manage the .venv again
+ 1036  uv run main.py
+```
+
 # Standard Output (stdout)
 
 In computing, stdout stands for Standard Output. It refers to the default output stream where a program writes its output data. When a program executes, it can produce output in various forms, such as text, images, or audio. Stdout is one of the three standard streams in Unix-like operating systems, along with stdin (Standard Input) and stderr (Standard Error).
