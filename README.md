@@ -1,5 +1,98 @@
 # python
 
+You're encountering this error because **Voila or Jupyter is running with a Python kernel that isn't pointing to your `.venv`**, even though you've activated the environment in your terminal. That’s why it can’t find `pandas`.
+
+### 🔥 Key Clues from the Logs:
+
+* Python version shown: **3.9.6**
+* Your virtualenv is using **Python 3.13**
+
+  ```
+  /.../.venv/lib/python3.13/site-packages/...
+  ```
+* This mismatch means: **Voila is launching a different kernel than your `.venv`**, and `pandas` isn't installed there.
+
+---
+
+### ✅ Fix: Force Jupyter/Voila to Use Your `.venv` Kernel
+
+#### 1. **Activate Your Environment in Terminal**
+
+```bash
+source .venv/bin/activate
+```
+
+#### 2. **Install `ipykernel` and Register Your Kernel**
+
+Run this *inside the activated environment*:
+
+```bash
+pip install ipykernel
+python -m ipykernel install --user --name user-behaviour-env --display-name "Python (user-behaviour)"
+```
+
+This registers your `.venv` environment with Jupyter.
+
+#### 3. **Install Voila Inside the Virtual Environment**
+
+To avoid version mismatches, do:
+
+```bash
+pip install voila
+```
+
+Then start Voila **from within the environment**:
+
+```bash
+voila your_notebook.ipynb
+```
+
+This ensures Voila uses the correct Python interpreter.
+
+#### 4. **(Optional) Remove Broken Kernel**
+
+You may have old/broken Jupyter kernels. List them:
+
+```bash
+jupyter kernelspec list
+```
+
+Remove any outdated ones (e.g., `python3`):
+
+//we might have uninstall the old kernel to resolve the issue
+
+```bash
+jupyter kernelspec uninstall old-kernel-name
+```
+
+Replace `old-kernel-name` with the actual name you want to remove.
+
+---
+
+### ✅ Final Check
+
+After all this, running:
+
+```bash
+which python
+```
+
+Should show:
+
+```
+/your/project/.venv/bin/python
+```
+
+And in the notebook interface, the kernel you use should be named:
+
+```
+Python (user-behaviour)
+```
+
+---
+
+
+
 The relationship between **kernel**, **Python environment**, and **underlying libraries** is central to how a Jupyter Notebook or Python script runs. Here's a breakdown of how they interconnect:
 
 ### 1. **Kernel**
