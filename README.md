@@ -1,5 +1,64 @@
 # python
 
+The relationship between **kernel**, **Python environment**, and **underlying libraries** is central to how a Jupyter Notebook or Python script runs. Here's a breakdown of how they interconnect:
+
+### 1. **Kernel**
+
+* A **kernel** is the computational engine that runs your code.
+* In Jupyter Notebooks, the kernel executes the Python code in each cell and returns the result.
+* Each kernel is tied to a specific **Python interpreter** (such as one from a virtual environment, system Python, or conda environment).
+* When you change the kernel in Jupyter or VS Code, you're telling it which **Python environment** it should use to run the code.
+
+### 2. **Python Environment**
+
+* A **Python environment** refers to a specific **Python interpreter** along with its installed packages. This can be:
+
+  * **System-wide Python** (default Python installed on your OS).
+  * **Virtual Environments** (`.venv`, `venv`, `conda`, etc.), where you isolate specific packages for a project.
+  * **Conda environments** (`conda create`), where you create and manage isolated environments with specific Python versions and dependencies.
+* The **Python environment** ensures that your project uses the exact dependencies (such as `pandas`, `numpy`, etc.) you need for the project to run correctly.
+
+### 3. **Underlying Libraries**
+
+* The **underlying libraries** (such as `pandas`, `numpy`, `plotly`, etc.) are the **packages** installed within the **Python environment**.
+* Libraries are installed via package managers like `pip` (e.g., `pip install pandas`) or `conda` (for Conda environments).
+* The **kernel** communicates with the **Python environment** to access these libraries and execute the code that uses them.
+
+---
+
+### ✅ How They Work Together:
+
+1. **Python Environment**:
+
+   * You create a virtual environment for your project (e.g., `.venv`) to ensure that you have the exact packages you need for that specific project.
+   * This environment contains a **specific version of Python** and any libraries you install, such as `pandas`, `numpy`, or `matplotlib`.
+
+2. **Kernel**:
+
+   * You select the **kernel** that is linked to your Python environment. The kernel uses the Python interpreter from that environment to execute the code.
+   * If you select a kernel tied to a `.venv` or conda environment, it will use the exact Python interpreter and packages from that environment to run your code.
+
+3. **Libraries**:
+
+   * The libraries you install (e.g., `pandas`) are available for use in that Python environment.
+   * If you're running code in a notebook, the kernel will use the packages installed in the environment to execute the notebook's code.
+
+### Example Flow:
+
+* You create a virtual environment (e.g., `.venv`) for your project.
+* You install `pandas` and other libraries in that `.venv`.
+* When you open a Jupyter notebook, you select the kernel corresponding to that `.venv` environment.
+* The kernel executes the code and accesses the libraries installed in that `.venv`.
+
+### Summary:
+
+* **Kernel** is the engine that runs your code.
+* **Python Environment** provides the interpreter and libraries.
+* **Libraries** are the packages installed within the environment that your code uses.
+
+When there's a **mismatch** between the kernel and the Python environment, or if the kernel can’t find the libraries installed in the current environment, you'll encounter errors like `ModuleNotFoundError`.
+
+
 # Using UV
 https://docs.astral.sh/uv/getting-started/features/
 
