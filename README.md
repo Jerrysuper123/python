@@ -1,5 +1,64 @@
 # python
 
+If the package is **not on PyPI** and is just some local file or folder, you can still use it — you just need to know whether it’s a **source distribution**, a **wheel**, or just **plain Python code**.
+
+---
+
+## **1. If it’s a `.whl` file**
+
+```bash
+pip install /path/to/package_file.whl
+```
+
+---
+
+## **2. If it’s a `.tar.gz` or `.zip` source distribution**
+
+```bash
+pip install /path/to/package_file.tar.gz
+```
+
+or:
+
+```bash
+pip install /path/to/package_file.zip
+```
+
+---
+
+## **3. If it’s a folder with `setup.py`**
+
+You can install it locally:
+
+```bash
+pip install /path/to/package_folder
+```
+
+or in editable mode (good for development):
+
+```bash
+pip install -e /path/to/package_folder
+```
+
+---
+
+## **4. If it’s just plain `.py` files (no setup.py)**
+
+You don’t even have to install — just add the path to `sys.path`:
+
+```python
+import sys
+sys.path.insert(0, "/path/to/folder")
+import mymodule  # from /path/to/folder/mymodule.py
+```
+
+---
+
+💡 If you want to **bundle** a local package file inside your project so it works without any installation step, you can just drop it in your project folder and import it directly.
+
+---
+
+
 The `$PATH` environment variable is a **colon-separated list** of directories that your shell searches to find executables. When you run a command (like `python`, `git`, or `ls`), the shell looks through each directory listed in `$PATH` to find the corresponding executable file.
 
 ### 1. **Basic Construction of `$PATH`**
